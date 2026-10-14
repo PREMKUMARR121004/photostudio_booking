@@ -28,14 +28,16 @@ function Getservices() {
       setLoading(true)
       setError("")
 
-      const response = await axios.get(
-        'http://localhost:5000/api/admin/getservices',
-        {
-          headers: {
-            Authorization: `Bearer ${token}`
-          }
-        }
-      )
+      
+const response = await axios.get(
+  `${import.meta.env.VITE_API_URL}/api/admin/getservices`,
+  {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  }
+)
+
 
       setService(response.data)
     } catch (error) {
@@ -66,15 +68,17 @@ function Getservices() {
         price: Number(newPrice)
       }
 
-      await axios.post(
-        'http://localhost:5000/api/admin/addservice',
-        newService,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`
-          }
-        }
-      )
+    
+await axios.post(
+  `${import.meta.env.VITE_API_URL}/api/admin/addservice`,
+  newService,
+  {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  }
+)
+
 
       setNewName("")
       setNewDescription("")
@@ -117,15 +121,17 @@ function Getservices() {
         price: Number(price)
       }
 
-      await axios.put(
-        `http://localhost:5000/api/admin/updateservices/${id}`,
-        updatedService,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`
-          }
-        }
-      )
+     
+await axios.put(
+  `${import.meta.env.VITE_API_URL}/api/admin/updateservices/${id}`,
+  updatedService,
+  {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  }
+)
+
 
       setSelectedService(null)
       setMessage("Service updated successfully.")
@@ -152,14 +158,16 @@ function Getservices() {
       setError("")
       setMessage("")
 
-      await axios.delete(
-        `http://localhost:5000/api/admin/deleteservice/${id}`,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`
-          }
-        }
-      )
+      
+await axios.delete(
+  `${import.meta.env.VITE_API_URL}/api/admin/deleteservice/${id}`,
+  {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  }
+)
+
 
       setService((previousServices) =>
         previousServices.filter((item) => item._id !== id)

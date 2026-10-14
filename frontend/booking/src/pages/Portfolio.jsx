@@ -12,11 +12,16 @@ function Portfolio() {
     try{
 
    
-    const response=await axios.get('http://localhost:5000/api/admin/getportfolio',{
-        headers:{
-            Authorization:`Bearer ${token}`
-        }
-    })  
+    
+const response = await axios.get(
+  `${import.meta.env.VITE_API_URL}/api/admin/getportfolio`,
+  {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  }
+)
+
     console.log(response.data)
     setPortfolio(response.data.data)
  }
@@ -34,11 +39,16 @@ function Portfolio() {
 
  async function handleDelete(id){
     try{
-   await axios.delete(`http://localhost:5000/api/admin/deleteportfolio/${id}`,{
-    headers:{
-        Authorization:`Bearer ${token}`
+  
+await axios.delete(
+  `${import.meta.env.VITE_API_URL}/api/admin/deleteportfolio/${id}`,
+  {
+    headers: {
+      Authorization: `Bearer ${token}`
     }
-   })
+  }
+)
+
     setPortfolio((preportfolio)=>
         preportfolio.filter((d)=>d._id!==id)
     )}
@@ -64,12 +74,17 @@ function handleEdit(data){
     try{
 
     
-   await axios.put(`http://localhost:5000/api/admin/updateportfolio/${id}`,updatedPortfolio,{
-        headers:{
-            Authorization:`Bearer ${token}`
-        }
+   
+await axios.put(
+  `${import.meta.env.VITE_API_URL}/api/admin/updateportfolio/${id}`,
+  updatedPortfolio,
+  {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  }
+)
 
-    }) 
         setEdit(null)
         setTitle("")
         setDescription("")

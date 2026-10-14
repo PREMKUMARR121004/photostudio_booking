@@ -58,15 +58,15 @@ function Addservices() {
     try {
       setLoading(true)
 
-      await axios.post(
-        'http://localhost:5000/api/admin/addservice',
-        service,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`
-          }
-        }
-      )
+    await axios.post(
+  `${import.meta.env.VITE_API_URL}/api/admin/addservice`,
+  service,
+  {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  }
+)
 
       setSuccess('Service added successfully!')
 

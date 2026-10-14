@@ -17,13 +17,16 @@ function Services() {
         setLoading(true)
         setError('')
 
-        const response = await axios.get(
-          'http://localhost:5000/api/getservices',{
-            headers:{
-                Authorization:`Bearer ${token}`
-            }
-          }
-        )
+       
+const response = await axios.get(
+  `${import.meta.env.VITE_API_URL}/api/getservices`,
+  {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  }
+)
+
 
         setService(response.data)
       } catch (error) {

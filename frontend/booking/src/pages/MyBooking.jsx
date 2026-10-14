@@ -22,14 +22,16 @@ function MyBooking() {
       setLoading(true)
       setError('')
 
-      const response = await axios.get(
-        'http://localhost:5000/api/mybooking',
-        {
-          headers: {
-            Authorization: `Bearer ${token}`
-          }
-        }
-      )
+      
+const response = await axios.get(
+  `${import.meta.env.VITE_API_URL}/api/mybooking`,
+  {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  }
+)
+
 
       setBooking(response.data)
     } catch (error) {
@@ -55,14 +57,16 @@ function MyBooking() {
       setCancelLoading(id)
       setCancelError('')
 
-      await axios.delete(
-        `http://localhost:5000/api/cancelbooking/${id}`,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`
-          }
-        }
-      )
+      
+await axios.delete(
+  `${import.meta.env.VITE_API_URL}/api/cancelbooking/${id}`,
+  {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  }
+)
+
 
       setBooking((previousBooking) =>
         previousBooking.filter((item) => item._id !== id)

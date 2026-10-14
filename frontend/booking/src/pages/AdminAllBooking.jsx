@@ -23,14 +23,15 @@ function AdminAllBooking() {
       setLoading(true)
       setFetcherror('')
 
-      const response = await axios.get(
-        'http://localhost:5000/api/admin/allbooking',
-        {
-          headers: {
-            Authorization: `Bearer ${token}`
-          }
-        }
-      )
+     
+const response = await axios.get(
+  `${import.meta.env.VITE_API_URL}/api/admin/allbooking`,
+  {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  }
+)
 
       setAllBooking(response.data)
     } catch (error) {
@@ -51,15 +52,15 @@ function AdminAllBooking() {
       setUpdate('')
       setUpdateError('')
 
-      await axios.patch(
-        `http://localhost:5000/api/admin/updatebooking/${id}`,
-        { status },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`
-          }
-        }
-      )
+     await axios.patch(
+  `${import.meta.env.VITE_API_URL}/api/admin/updatebooking/${id}`,
+  { status },
+  {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  }
+)
 
       setUpdate(`Booking ${status} successfully.`)
 

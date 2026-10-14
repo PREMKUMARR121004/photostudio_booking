@@ -29,14 +29,16 @@ function Profile() {
         setLoading(true)
         setFetcherror('')
 
-        const response = await axios.get(
-          'http://localhost:5000/api/auth/profile',
-          {
-            headers: {
-              Authorization: `Bearer ${token}`
-            }
-          }
-        )
+        
+const response = await axios.get(
+  `${import.meta.env.VITE_API_URL}/api/auth/profile`,
+  {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  }
+)
+
 
         setProfile(response.data)
         setName(response.data.name)
@@ -66,18 +68,20 @@ function Profile() {
     try {
       setSubmit(true)
 
-      const response = await axios.patch(
-        'http://localhost:5000/api/auth/updateprofile',
-        {
-          name: name.trim(),
-          email: email.trim()
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`
-          }
-        }
-      )
+      
+const response = await axios.patch(
+  `${import.meta.env.VITE_API_URL}/api/auth/updateprofile`,
+  {
+    name: name.trim(),
+    email: email.trim()
+  },
+  {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  }
+)
+
 
       setProfile((previousProfile) => ({
         ...previousProfile,

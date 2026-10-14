@@ -24,18 +24,20 @@ function AdminDashboard() {
         setLoading(true)
         setError('')
 
-        const [dashboardResponse, statsResponse] = await Promise.all([
-          axios.get('http://localhost:5000/api/admin/dashboard', {
-            headers: {
-              Authorization: `Bearer ${token}`
-            }
-          }),
-          axios.get('http://localhost:5000/api/admin/bookingstats', {
-            headers: {
-              Authorization: `Bearer ${token}`
-            }
-          })
-        ])
+        
+const [dashboardResponse, statsResponse] = await Promise.all([
+  axios.get(`${import.meta.env.VITE_API_URL}/api/admin/dashboard`, {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  }),
+  axios.get(`${import.meta.env.VITE_API_URL}/api/admin/bookingstats`, {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  })
+])
+
 
         setDashboard(dashboardResponse.data)
         setBookingstats(statsResponse.data)

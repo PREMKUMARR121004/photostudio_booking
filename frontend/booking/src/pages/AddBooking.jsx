@@ -31,14 +31,16 @@ function AddBooking() {
       try {
         setServiceLoading(true)
 
-        const response = await axios.get(
-          'http://localhost:5000/api/getservices',
-          {
-            headers: {
-              Authorization: `Bearer ${token}`
-            }
-          }
-        )
+        
+const response = await axios.get(
+  `${import.meta.env.VITE_API_URL}/api/getservices`,
+  {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  }
+)
+
 
         setService(response.data)
       } catch (error) {
@@ -99,14 +101,14 @@ function AddBooking() {
       setLoading(true)
 
       await axios.post(
-        'http://localhost:5000/api/addbooking',
-        bookedService,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`
-          }
-        }
-      )
+  `${import.meta.env.VITE_API_URL}/api/addbooking`,
+  bookedService,
+  {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  }
+)
 
       setConfirm('Your booking request was submitted successfully!')
       setSelectedService('')

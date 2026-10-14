@@ -61,10 +61,12 @@ function Register() {
     try {
       setLoading(true)
 
-      const response = await axios.post(
-        'http://localhost:5000/api/auth/register',
-        user
-      )
+      
+const response = await axios.post(
+  `${import.meta.env.VITE_API_URL}/api/auth/register`,
+  user
+)
+
 
       setCreate(
         response.data.message ||
