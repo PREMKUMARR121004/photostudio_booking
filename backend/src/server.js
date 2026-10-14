@@ -20,8 +20,8 @@ app.use('/api',portfolioRoutes)
 app.use('/api',bookingRoutes)
 
 connectDB()
-app.listen(5000,()=>{
-    console.log("Server Running on port 5000");
-    
-})
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => {
+    console.log(`Server Running on port ${PORT}`);
+});
 
